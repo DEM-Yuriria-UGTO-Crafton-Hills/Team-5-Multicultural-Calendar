@@ -8,7 +8,7 @@ vector<Event> StoredEvents::LoadEvents(vector<Event> tempVector)
 {
     ifstream fileIn;
 
-    fileIn.open("output/StoredEvents.txt");
+    fileIn.open("Team 5 Multicultural Calendar/StoredEvents.txt");
     if (!fileIn.is_open())
     {
         cout << "unable to open storage" << endl;
@@ -121,7 +121,7 @@ void StoredEvents::SaveEvents(vector<Event> tempVector)
 {
     ifstream fileOut;
 
-    fileOut.open("output/StoredEvents.txt");
+    fileOut.open("Team 5 Multicultural Calendar/StoredEvents.txt");
     if (!fileOut.is_open())
     {
         cout << "unable to open storage" << endl;
