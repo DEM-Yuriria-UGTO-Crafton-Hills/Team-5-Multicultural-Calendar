@@ -43,7 +43,7 @@ vector<Event> StoredEvents::LoadEvents(vector<Event> tempVector)
     return tempVector;
 }
 
-void StoredEvents::SearchForEvent(string userDate, vector<Event> tempVector)
+void StoredEvents::SearchByDate(string userDate, vector<Event> tempVector)
 {
     int userMonth;
     int userDay;
