@@ -121,7 +121,7 @@ void StoredEvents::SaveEvents(vector<Event> tempVector)
 {
     ifstream fileOut;
 
-    fileOut.open("Team 5 Multicultural Calendar/StoredEvents.txt");
+    fileOut.open("Team 5 Multicultural Calendar/StoredEvents.txt", ofstream::trunc);
     if (!fileOut.is_open())
     {
         cout << "unable to open storage" << endl;
@@ -139,16 +139,16 @@ void StoredEvents::SaveEvents(vector<Event> tempVector)
         tempEvent = tempVector.at(i);
 
         tempName = tempEvent.getEventName();
-        fileOut >> tempName;
+        fileOut << tempName;
 
         tempDate = tempEvent.getEventDate();
-        fileOut >> tempDate;
+        fileOut << tempDate;
 
         tempCountry = tempEvent.getEventCountry();
-        fileOut >> tempCountry;
+        fileOut << tempCountry;
 
         tempDescription = tempEvent.getEventDescription();
-        fileOut >> tempName;
+        fileOut << tempName;
     }
 
     fileOut.close();
