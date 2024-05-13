@@ -90,7 +90,7 @@ void StoredEvents::SearchByDate(string userDate, vector<Event> tempVector)
 
         while (tempEvent.getEventDate().at(i) != '/')         
         {
-            tempStr.push_back(tempEvent.getEventDate().at(i));
+            tempStr = tempEvent.getEventDate().at(i);
             i++;
         }
         tempMonth = stoi(tempStr);

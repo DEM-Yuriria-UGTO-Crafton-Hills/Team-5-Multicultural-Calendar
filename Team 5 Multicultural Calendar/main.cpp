@@ -41,7 +41,7 @@ int main()
     int MonthAndDay[2] = { 1,2 };
     string day;
     choice = IntroScreen();
-
+    string Date = "";
     //variables neccesary to load the file and keep it in RAM
     vector<Event> LoadedEvents;
     StoredEvents storedEvents;
@@ -110,15 +110,10 @@ int main()
                 std::cout << "Please select a day. " << endl << "There are: " << Days[month] << " days in " << months[month] << endl;
                 getline(cin, day);
             }
-            for (int a = 0; a <= month; a++) {
-                monthPoint = Days[a] + monthPoint;
-            }
+            Date = to_string(month + 1) + "/" + day;
+            storedEvents.SearchByDate(Date,LoadedEvents);
 
-            monthPoint = monthPoint + stoi(day);
-            std::cout << "Your Event Details:" << endl;
-            std::cout << "Date: " << month << "/" << day << endl;
-            std::cout << "Name: " << LoadedEvents.at(monthPoint).getEventName() << endl;
-            std::cout << "Description: " << LoadedEvents.at(monthPoint).getEventDescription() << endl;
+            
             getline(cin, WAIT);
             system("cls");
         }
