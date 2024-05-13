@@ -8,9 +8,10 @@ using namespace std;
 class Event {
 
 protected:
+    // Member data that will be inherited by the classes AmericanEvent and MexicanEvent
     string name;
     string date;
-    string country; // This is not used, this is just symbolism that an event will have a country
+    string country;
     string description;
 
 public:

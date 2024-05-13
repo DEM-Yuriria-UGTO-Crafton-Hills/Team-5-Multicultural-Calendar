@@ -11,6 +11,7 @@ private:
 
 public:
 
+    // Constructor for American events
     AmericanEvent();
 
 };
