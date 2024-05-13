@@ -43,6 +43,7 @@ int main()
     choice = IntroScreen();
     string Date = "";
     bool whichCountry = true;
+    string tempString;
     //variables neccesary to load the file and keep it in RAM
     vector<Event> LoadedEvents;
     StoredEvents storedEvents;
@@ -61,16 +62,9 @@ int main()
 
 
         if (choice == 1) {
-            options(choice, EventNameAndDes);
-            SearchFunction(EventNameAndDes[0]);
-            if (MonthDayHold[1] == 33) {
-                std::cout << "The event could not be found. " << endl;
-
-            }
-            else {
-                std::cout << "The event is on " << months[MonthDayHold[0]] << ", " << MonthDayHold[1] << endl;
-
-            }
+            std::cout << "Enter the name of an event: ";
+            getline(cin, tempString)
+            storedEvents.SearchByName(tempString, LoadedEvents);
             getline(cin, WAIT);
             system("cls");
         }
