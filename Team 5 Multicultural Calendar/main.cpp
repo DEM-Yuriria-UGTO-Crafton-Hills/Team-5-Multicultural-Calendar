@@ -123,7 +123,7 @@ int main()
     } while (choice != 0);
 
     std::cout << "Thanks for viewing the calendar" << endl;
-    delete[] EventNameAndDes;
+    //delete[] EventNameAndDes;
     return 0;
 }
 
