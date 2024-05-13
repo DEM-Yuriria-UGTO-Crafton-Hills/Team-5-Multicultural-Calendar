@@ -50,17 +50,14 @@ void StoredEvents::SearchByDate(string userDate, vector<Event> tempVector)
     int tempMonth;
     int tempDay;
     string tempStr;
-    int slashIndex;
     int i = 0;
     int ii = 0;
     Event tempEvent;
 
     //separate input string into month and day
-    slashIndex = userDate.find('/');
 
-    while (userDate.at(i) != '/' )
+    while (userDate.at(i) != '/')
     {
-        
         tempStr.push_back(userDate.at(i));
         i++;
     }
@@ -72,7 +69,6 @@ void StoredEvents::SearchByDate(string userDate, vector<Event> tempVector)
 
     while (userDate.size() != i)
     {
-       
         tempStr.push_back(userDate.at(i));
         i++;
     }
@@ -82,11 +78,9 @@ void StoredEvents::SearchByDate(string userDate, vector<Event> tempVector)
     tempStr = "";
 
     //the actual searching function
-    for (ii = 0; ii < tempVector.size(); ++ii)
+    for (ii = 0; ii < tempVector.size() - 1; ++ii)
     {
         tempEvent = tempVector.at(ii);
-
-        slashIndex = tempEvent.getEventDate().find('/');
 
         while (tempEvent.getEventDate().at(i) != '/')         
         {
@@ -95,36 +89,35 @@ void StoredEvents::SearchByDate(string userDate, vector<Event> tempVector)
         }
         tempMonth = stoi(tempStr);
 
-       i++;
+        i++;
         tempStr = "";
 
         if (tempMonth == userMonth)
         {
-            while (
-                   tempEvent.getEventDate().size() != i)
+            while (tempEvent.getEventDate().size() != i)
             {
-                tempStr = tempEvent.getEventDate().at(i);
+                tempStr.push_back(tempEvent.getEventDate().at(i));
                 i++;
             }
             tempDay = stoi(tempStr);
 
-            i = 0;
-            tempStr = "";
-
             if (tempDay == userDay)
             {
-                cout << tempEvent.getEventName() << endl
+                cout << endl
+                     << tempEvent.getEventName() << endl
                      << tempEvent.getEventDate() << endl
                      << tempEvent.getEventCountry() << endl
                      << tempEvent.getEventDescription() << endl;
             }
         }
+        i = 0;
+        tempStr = "";
     }
 }
 
 void StoredEvents::SaveEvents(vector<Event> tempVector)
 {
-    fstream fileOut;
+    ofstream fileOut;
 
     fileOut.open("Team 5 Multicultural Calendar/StoredEvents.txt", ofstream::trunc);
     if (!fileOut.is_open())
