@@ -63,7 +63,7 @@ int main()
 
         if (choice == 1) {
             std::cout << "Enter the name of an event: ";
-            getline(cin, tempString)
+            getline(cin, tempString);
             storedEvents.SearchByName(tempString, LoadedEvents);
             getline(cin, WAIT);
             system("cls");
