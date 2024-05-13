@@ -43,6 +43,54 @@ vector<Event> StoredEvents::LoadEvents(vector<Event> tempVector)
     return tempVector;
 }
 
+void StoredEvents::DisplayEventsInMonth(string userMonth, vector<Event> tempVector)
+{
+    int tempMonth;
+    int monthNum;
+    string tempStr = "";
+    int i = 0;
+    int ii = 0;
+    Event tempEvent;
+
+    
+
+    while (userMonth.size() != i)
+    {
+        tempStr.push_back(userMonth.at(i));
+        i++;
+    }
+    monthNum = stoi(tempStr);
+
+    i = 0;
+    tempStr = "";
+
+    //the actual searching function
+    for (ii = 0; ii < tempVector.size() - 1; ++ii)
+    {
+        tempEvent = tempVector.at(ii);
+
+        while (tempEvent.getEventDate().size() != i)         
+        {
+            tempStr.push_back(tempEvent.getEventDate().at(i));
+            i++;
+        }
+        tempMonth = stoi(tempStr);
+
+        i++;
+
+        if (tempMonth == monthNum)
+        {
+            cout << endl
+                 << "Name: " << tempEvent.getEventName() << endl
+                 << "Date: " << tempEvent.getEventDate() << endl
+                 << "Country: " << tempEvent.getEventCountry() << endl
+                 << "Description: " << tempEvent.getEventDescription() << endl;
+        }
+        i = 0;
+        tempStr = "";
+    }
+}
+
 void StoredEvents::SearchByDate(string userDate, vector<Event> tempVector)
 {
     int userMonth;
