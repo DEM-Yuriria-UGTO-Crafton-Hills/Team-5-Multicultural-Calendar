@@ -60,7 +60,7 @@ void StoredEvents::SearchByName(string userName, vector<Event> tempVector)
         tempEvent = tempVector.at(ii);
         tempString = tempEvent.getEventName();
 
-        for (i = 0; i != userName.length(); ++i)
+        for (i = 0; i != tempString.length(); ++i)
         {
             tempString.at(i) = tolower(tempString.at(i));
         }
