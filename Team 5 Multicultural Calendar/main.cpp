@@ -19,7 +19,7 @@ bool IsItAnInt(string);
 int Screen();
 int MonthDayHold[2];
 long monthPoint = 0;
-
+string Country = "";
 
 int Days[12]{ 31,29,31,30,31,30,31,31,30,31,30,31 };
 string months[] = { "January", "February", "March",
@@ -42,10 +42,11 @@ int main()
     string day;
     choice = IntroScreen();
     string Date = "";
+    bool whichCountry = true;
     //variables neccesary to load the file and keep it in RAM
     vector<Event> LoadedEvents;
     StoredEvents storedEvents;
-
+    Event TempStorage;
     //reads all file contents and loads them into the vector
     //in the order they were written to the file
     LoadedEvents = storedEvents.LoadEvents(LoadedEvents);
@@ -75,7 +76,9 @@ int main()
         }
 
         if (choice == 2) {
+            
             month = Calendar(choice);
+            
             std::cout << "Please select a day" << endl;
             getline(cin, day);
             while (IsItAnInt(day) || Days[month] < stoi(day) || stoi(day) < 0) {
@@ -85,11 +88,33 @@ int main()
 
             }
             options(choice, EventNameAndDes);
-
+            while (whichCountry) {
+                std::cout << "Please select a country. ";
+                getline(cin, Country);
+                for (int ii = 0; ii < Country.size(); ii++) {
+                    Country.at(ii) = toupper(Country.at(ii));
+                }
+                if (Country == "AMERICA") {
+                    whichCountry = false;
+                }
+                if (Country == "MEXICO") {
+                    whichCountry = false;
+                }
+            }
+            
+            
+            Date = to_string(month + 1) + "/" + day;
+            TempStorage.setEventName(EventNameAndDes[0]);
+            TempStorage.setEventDate(Date);
+            TempStorage.setEventCountry(Country);
+            TempStorage.setEventDescription(EventNameAndDes[1]);
+            LoadedEvents.push_back(TempStorage);
+            storedEvents.SaveEvents(LoadedEvents);
             system("cls");
             std::cout << "Your new Event:" << endl;
             std::cout << "Name: " << EventNameAndDes[0] << endl;
             std::cout << "Description: " << EventNameAndDes[1] << endl;
+            std::cout << "Country: " << Country << endl;
             getline(cin, WAIT);
             system("cls");
         }
@@ -97,7 +122,7 @@ int main()
         if (choice == 3) {
             month = Calendar(choice);
 
-            //Print out all events for the month
+            storedEvents.DisplayEventsInMonth(to_string(month + 1), LoadedEvents);
             getline(cin, WAIT);
             system("cls");
         }
