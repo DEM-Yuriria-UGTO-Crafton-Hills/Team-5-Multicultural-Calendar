@@ -13,6 +13,8 @@ public:
 
     void SearchByName(string, vector<Event>);
 
+    void DisplayEventsInMonth(string, vector<Event>);
+
     void SearchByDate(string, vector<Event>);
 
     void SaveEvents(vector<Event>);
