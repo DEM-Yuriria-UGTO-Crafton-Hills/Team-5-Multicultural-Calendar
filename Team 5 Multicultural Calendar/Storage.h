@@ -11,6 +11,8 @@ class StoredEvents
 public:
     vector<Event> LoadEvents(vector<Event>);
 
+    void SearchByName(string, vector<Event>);
+
     void SearchByDate(string, vector<Event>);
 
     void SaveEvents(vector<Event>);
