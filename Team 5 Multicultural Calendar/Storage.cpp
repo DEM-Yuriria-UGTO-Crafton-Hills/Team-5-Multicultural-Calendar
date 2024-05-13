@@ -52,8 +52,6 @@ void StoredEvents::DisplayEventsInMonth(string userMonth, vector<Event> tempVect
     int ii = 0;
     Event tempEvent;
 
-    
-
     while (userMonth.size() != i)
     {
         tempStr.push_back(userMonth.at(i));
@@ -65,7 +63,7 @@ void StoredEvents::DisplayEventsInMonth(string userMonth, vector<Event> tempVect
     tempStr = "";
 
     //the actual searching function
-    for (ii = 0; ii < tempVector.size() - 1; ++ii)
+    for (ii = 0; tempVector.size() != ii; ++ii)
     {
         tempEvent = tempVector.at(ii);
 
@@ -126,7 +124,7 @@ void StoredEvents::SearchByDate(string userDate, vector<Event> tempVector)
     tempStr = "";
 
     //the actual searching function
-    for (ii = 0; ii < tempVector.size() - 1; ++ii)
+    for (ii = 0; tempVector.size() != ii; ++ii)
     {
         tempEvent = tempVector.at(ii);
 
@@ -152,10 +150,10 @@ void StoredEvents::SearchByDate(string userDate, vector<Event> tempVector)
             if (tempDay == userDay)
             {
                 cout << endl
-                     << tempEvent.getEventName() << endl
-                     << tempEvent.getEventDate() << endl
-                     << tempEvent.getEventCountry() << endl
-                     << tempEvent.getEventDescription() << endl;
+                     << "Name: " << tempEvent.getEventName() << endl
+                     << "Date: " << tempEvent.getEventDate() << endl
+                     << "Country: " << tempEvent.getEventCountry() << endl
+                     << "Description: " << tempEvent.getEventDescription() << endl;
             }
         }
         i = 0;
@@ -165,9 +163,9 @@ void StoredEvents::SearchByDate(string userDate, vector<Event> tempVector)
 
 void StoredEvents::SaveEvents(vector<Event> tempVector)
 {
-    ofstream fileOut;
+    fstream fileOut;
 
-    fileOut.open("Team 5 Multicultural Calendar/StoredEvents.txt", ofstream::trunc);
+    fileOut.open("StoredEvents.txt", ofstream::out | ofstream::trunc);
     if (!fileOut.is_open())
     {
         cout << "unable to open storage" << endl;
@@ -185,16 +183,21 @@ void StoredEvents::SaveEvents(vector<Event> tempVector)
         tempEvent = tempVector.at(i);
 
         tempName = tempEvent.getEventName();
-        fileOut << tempName;
+        fileOut << tempName << endl;
 
         tempDate = tempEvent.getEventDate();
-        fileOut << tempDate;
+        fileOut << tempDate << endl;
 
         tempCountry = tempEvent.getEventCountry();
-        fileOut << tempCountry;
+        fileOut << tempCountry << endl;
 
         tempDescription = tempEvent.getEventDescription();
-        fileOut << tempName;
+        fileOut << tempDescription;
+
+        if (i != tempVector.size() - 1)
+        {
+            fileOut << endl;
+        }
     }
 
     fileOut.close();
